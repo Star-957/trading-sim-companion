@@ -32,3 +32,23 @@ Review passes performed by the implementation agent are self-review, even when
 their checklists differ. Automated tests are separately reproducible. Review
 findings, exact revisions and fresh-clone results are reported with the release
 handoff; this document specifies checks rather than claiming unperformed runs.
+
+## Optional browser layout regression
+
+The application, build and standard test suite need only Python. Layout checking
+additionally uses an already-installed Node.js, Playwright module and Chromium;
+the following commands do not download or install them:
+
+```text
+python tools/render_layout_fixtures.py ../layout-reports
+node tests/browser_layout.mjs PATH_TO_PLAYWRIGHT/index.mjs ../layout-reports
+```
+
+Choose a new report directory. The regression launches a disposable headless
+Chromium with its sandbox enabled, reads local synthetic HTML, blocks page requests
+outside `file:`, and closes the browser. It checks default and maximum-length valid
+symbol/price reports at 320, 390 and 1280 CSS pixels. Both the page and actual text
+rectangles must stay within their bounds; merely clipping overflowing text fails.
+It writes two 320px screenshots beside the reports and prints measured geometry.
+An overflow or missing boundary value returns exit 1. This is a browser geometry
+check, not Safari/Firefox/mobile hardware or screen-reader certification.

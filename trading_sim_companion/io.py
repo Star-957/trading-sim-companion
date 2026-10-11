@@ -78,6 +78,7 @@ def render_html(result):
 main{{max-width:960px;margin:auto;padding:40px 24px}}h1{{font-size:clamp(28px,5vw,48px);line-height:1.12;margin:12px 0}}
 .tag{{color:#e0d68a;letter-spacing:.12em;font-size:13px;font-weight:700}}.intro{{max-width:650px}}
 .card{{display:flex;gap:24px;align-items:center;border:1px solid #91aaa0;padding:24px;margin:28px 0;border-radius:16px}}
+.card>div:last-child{{min-width:0;overflow-wrap:anywhere}}
 .bot{{flex:0 0 76px;height:70px;background:#e0d68a;border-radius:20px;position:relative}}
 .bot:before,.bot:after{{content:'';position:absolute;top:25px;width:9px;height:13px;background:#102b2a;border-radius:50%}}
 .bot:before{{left:20px}}.bot:after{{right:20px}}.status{{font-size:26px;font-weight:700;margin:0}}
